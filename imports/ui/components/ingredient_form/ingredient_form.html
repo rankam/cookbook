@@ -1,0 +1,57 @@
+<template name="ingredient_form">
+
+<form class="ui form">
+	<div class="field">
+	<label>Ingredient Name</label>
+		<div class="one fields">
+		  <div class="field">
+		    <input name="ingredientName" type="text" id='ingredientName' placeholder="Ingredient Name">
+		  </div>
+		</div>
+	</div>
+	<div class="field">
+	<label>Nutrition</label>
+		<div class="four fields">
+		  <div class="field">
+		    <input name='kcal' type="number" id='kcal' placeholder="kCal">
+		  </div>
+		  
+		  <div class="field">
+		    <input name='protein' type="number" id='protein' placeholder="Protein">
+		  </div>
+
+		  <div class="field">
+		    <input name='fat' type="number" id='fat' placeholder="Fat">
+		  </div>
+	  	<div class="field">
+				<input name='carbohydrates' type="number" id='carbohydrates' placeholder="Carbohydrates">
+	  	</div>	    
+		</div>
+	</div>
+	<div class="field">
+		<label>Weight</label>
+		<div class="two fields">
+		  <div class="field">
+				<input name='units' type="number" id='units' placeholder='Units'>
+		  </div>	    
+	    
+		  <div class="field">
+				<div class="ui selection dropdown">
+			  	<input type="hidden" name="unitType">
+			  	<i class="dropdown icon"></i>
+			  	<div class="default text">Grams</div>
+			  	<div class="menu">
+			      <div class="item" data-value="oz">Ounces</div>
+			      <div class="item" data-value="g">Grames</div>
+			      <div class="item" data-value="ml">Milliliter</div>
+			  	</div>
+				</div> 
+			</div>
+	  </div>
+	</div>
+
+  <button id='submitFormBtn' class="ui button" type="submit">Submit</button>
+</form>
+
+
+</template>
