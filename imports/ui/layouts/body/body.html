@@ -1,5 +1,19 @@
 <template name="App_body">
-	{{> header}}
-	
-  {{> Template.dynamic template=main}}
+  {{> Template.dynamic template=header}}
+   <div class="pusher">
+    <div class="ui grid">
+        <div class="one wide column"></div>
+        <div class="six wide column">
+		  {{> Template.dynamic template=left_top}}
+		  {{> Template.dynamic template=left_bottom}}
+        </div>
+        <div style=" margin-left: auto;margin-right: auto; border-left: 1px solid #d4d4d5;height: 100vh;padding-left:0;padding-right:0;"></div>
+        <div class="six wide column">
+		  {{> Template.dynamic template=right_top}}
+		  {{> Template.dynamic template=right_bottom}}
+        </div>
+        <div class="one wide column"></div>
+    </div>
+  </div>
 </template>
+

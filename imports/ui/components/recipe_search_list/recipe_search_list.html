@@ -1,0 +1,29 @@
+<template name="recipe_search_list">
+	<div class="animated fadeIn faster">
+	<h2>Recipes</h2>
+	<hr />
+	<br/>
+<div class="ui fluid category search">
+  <div class="ui icon input fluid">
+    <input id="recipe-search" class="prompt fluid" type="text" placeholder="Search recipes...">
+    <i class="search icon"></i>
+  </div>
+  <div class="results"></div>
+</div>	
+  <div class="ui middle aligned selection divided list">
+    {{#each recipes}}
+    <div class="item">
+      <div class="right floated content">
+        <div id={{_id}} class="ui button deleteRecipe">delete</div>
+      </div>
+      <div id={{_id}} class="content recipe-list">
+        {{name}}
+        <div class="description">
+          Lorem ipsum
+        </div>
+      </div>
+    </div>   
+    {{/each}}
+  </div>  
+</div>
+</template>

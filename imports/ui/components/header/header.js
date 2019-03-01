@@ -2,36 +2,39 @@ import { Meteor } from 'meteor/meteor';
 import { ReactiveDict } from 'meteor/reactive-dict'
 import './header.html';
 import { Template } from 'meteor/templating';
-
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.header.onCreated(function () {
   this.state = new ReactiveDict;
-  this.state.set('isActiveId', 1);
+  const current = FlowRouter.current();
+  const currentPath = current.path;
+  if (currentPath.indexOf('recipe') >= 0) {
+  	this.state.set('selected', 'recipes');	
+  } else if (currentPath.indexOf('ingredient') >= 0) {
+  	this.state.set('selected', 'ingredients');	
+  } else {
+  	this.state.set('selected', 'home');	
+  }
+  
 });
 
 Template.header.helpers({
-  isActive() {
- 	// not woring
-    return 1 === Template.instance().state.get('isActiveId') ? 'active' : '';
+  selected(el) {
+    return el.hash.className == Template.instance().state.get('selected') ? 'active': '';
   }
 });
 
 Template.header.events({
-  'click .item': function 	(event, t) {
-  	const instance = Template.instance();
-  	const ids = [1,2,3];
-  	for (var i in ids) {
-  		const idNum = ids[i]
-  		var id = '#' + idNum
-  		var el = instance.find(id)
-  		if (idNum == event.target.id && !el.classList.contains('active')) {
-  			el.classList.toggle('active')
-  		} else if (idNum != event.target.id && el.classList.contains('active')) {
-  			el.classList.toggle('active')
-  		}
+  'click #header-recipes': function(event) {
+    Template.instance().state.set('selected', 'recipes');
+  },
+  'click #header-ingredients': function(event) {
+    Template.instance().state.set('selected', 'ingredients');
+  },
+  'click #header-home': function(event) {
+    Template.instance().state.set('selected', 'home');
+  } 
 
-  		
-  	}
-  	Template.instance().state.set('isActiveId', event.target.id);
-  }
 });
+
+

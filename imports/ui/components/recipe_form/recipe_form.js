@@ -3,10 +3,11 @@ import { $ } from 'meteor/jquery';
 import { _ } from 'meteor/underscore';
 import { insertRecipe } from '/imports/api/recipes/methods.js';
 import { Template } from 'meteor/templating';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+
 
 Template.recipe_form.onCreated(function recipeOnCreated() {
-  // counter starts at 0
-  this.recipeName = ''
+
 });
 
 Template.recipe_form.helpers({
@@ -24,7 +25,9 @@ Template.recipe_form.events({
     event.preventDefault();
     const instance = Template.instance()
     const recipeName = instance.$("#recipeName").val();
-    const newRecipe = insertRecipe.call({name: recipeName})
+    const recipeId = insertRecipe.call({name: recipeName})
+    FlowRouter.go(`/recipes/${recipeId}`)
+
     return
   }
 });

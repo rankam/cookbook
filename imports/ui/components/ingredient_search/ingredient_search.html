@@ -1,0 +1,27 @@
+<template name="ingredient_search">
+	<div class="animated fadeIn faster">
+	<h2>Add Ingredients</h2>
+	<hr/>
+	<div class="ui fluid category search hidden">
+		<div class="ui action input fluid">
+			<input id="ingredientSearch" type="text" placeholder="Search ingredients..."/>
+			<button class="ui icon button">
+				<i class="search icon"></i> Ingredients
+			</button>
+		</div>
+		{{# if ingredients}}
+		<div class="results transition visible" style="display: block !important;">
+			{{#each ingredient in ingredients}}  	
+			<a class="result" href="">
+				<div id={{ingredient._id}} class="content">
+					<span id={{ingredient._id}} class="title">{{ ingredient.name }}
+					<button id={{ingredient._id}} class="ui button right floated add-inredient-search-result">Add</button>
+					</span>
+				</div>
+			</a>
+			{{/each}}
+		</div>
+		{{/if}}
+	</div>
+	</div>
+</template>

@@ -9,7 +9,7 @@ Template.ingredient_form.onCreated(function recipeOnCreated() {
 });
 
 Template.ingredient_form.rendered = function() {
-  this.$('.ui.dropdown').dropdown({on: 'hover'});
+  this.$('.ui.dropdown').dropdown();
 };
 
 Template.ingredient_form.helpers({
@@ -20,16 +20,16 @@ Template.ingredient_form.events({
     event.preventDefault();
     const name = event.target.form.ingredientName.value;
     const kcal = event.target.form.kcal.value;
-    const fat = event.target.form.fat.value;
-    const protein = event.target.form.protein.value;
-    const carbohydrates = event.target.form.carbohydrates.value;
+    const gramsFat = event.target.form.gramsFat.value;
+    const gramsProtein = event.target.form.gramsProtein.value;
+    const gramsCarbohydrates = event.target.form.gramsCarbohydrates.value;
     const units = event.target.form.units.value;
     const unitType = event.target.form.unitType.value;
-    const newIngredient = insertIngredient.call({name, kcal, fat, protein, carbohydrates, units, unitType})
-    // event.preventDefault();
-    // const instance = Template.instance()
-    // const recipeName = instance.$("#recipeName").val();
-    // const newRecipe = insertRecipe.call({name: recipeName})
+    const newIngredient = insertIngredient.call({name, kcal, gramsFat, gramsProtein, gramsCarbohydrates, units, unitType})
     return
+  },
+  'click .menu': function(event) {
+    console.log(event)
+
   }
 });

@@ -1,12 +1,12 @@
-<template name="ingredient_form">
-
+<template name="ingredient_show">
+	{{#let _id=ingredient._id name=ingredient.name kcal=ingredient.kcal protein=ingredient.gramsProtein fat=ingredient.gramsFat carbs=ingredient.gramsCarbohydrates units=ingredient.units unitType=ingredient.unitType}}
 <form class="animated fadeIn faster ui form" style="margin-top: 1.5em;">
 	<div class="field">
-	<h3>Add New Ingredient</h3>
+	<h3>Edit {{name}}</h3>
 		<div class="two fields">
 		  <div class="field">
 		  	<label for="ingredientName">Name</label>
-		    <input name="ingredientName" type="text" id='ingredientName' placeholder="Ingredient Name">
+		    <input name="ingredientName" type="text" id='ingredientName' value={{name}}>
 		  </div>	  	  
 		</div>
 	</div>
@@ -14,37 +14,35 @@
 		<div class="two fields">	
 			 <div class="field">
 		  	<label for="kcal">Calories</label>
-		    <input name='kcal' type="number" id='kcal' placeholder="kCal">
+		    <input name='kcal' type="number" id='kcal' value={{kcal}}>
 		  </div>	
 		  <div class="field">
 		  	<label for="gramsProtein">Protein</label>
-		    <input name='protein' type="number" id='gramsProtein' placeholder="Protein">
+		    <input name='protein' type="number" id='gramsProtein' value={{protein}}>
 		  </div>				  
 		</div>
 		<div class="two fields">
 		  <div class="field">
 		  	<label for="gramsFat">Fat</label>
-		  	<input name='fat' type="number" id='gramsFat' placeholder="Fat">
+		  	<input name='fat' type="number" id='gramsFat' value={{fat}}>
 		  </div>		  
 	  	<div class="field">
 	  		<label for="gramsCarbohydrates">Carbohydrates</label>
-				<input name='carbohydrates' type="number" id='gramsCarbohydrates' placeholder="Carbohydrates">
+				<input name='carbohydrates' type="number" id='gramsCarbohydrates' value={{carbs}}>
 	  	</div>	
 		</div>
 	</div>
 	<div class="field">
-
 		<div class="two fields">
 		  <div class="field">
 		  	<label for="units">Units</label>
-				<input name='units' type="number" id='units' placeholder='Units'>
+				<input name='units' type="number" id='units' value={{units}}>
 		  </div>				
 		  <div class="field">
 		  	<label for="unitType">Unit Type</label>
 				<div class="ui selection dropdown">
-			  	<input type="hidden" id="unitType" name="unitType">
+			  	<input type="hidden" id="unitType" name="unitType" value={{unitType}}>
 			  	<i class="dropdown icon"></i>
-			  	<div class="default text">Grams</div>
 			  	<div class="menu">
 			      <div class="item">Ounces</div>
 			      <div class="item">Grams</div>
@@ -54,8 +52,8 @@
 			</div>	    	    
 	  </div>
 	</div>
+	<input type="hidden" id="ingredientId" value={{_id}} />
   <button id='submitFormBtn' class="ui button" type="submit">Submit</button>
 </form>
-<br/>
-
+{{/let}}
 </template>

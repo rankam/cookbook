@@ -1,15 +1,20 @@
 <template name='ingredient_list'>
-  <div class="ui middle aligned selection divided list">
+
+  <div class="animated fadeIn faster ui middle aligned selection divided list ">
     {{#each ingredients}}
     <div class="item">
       <div class="right floated content">
         <div id={{_id}} class="ui button deleteIngredient">delete</div>
       </div>
-      <div class="content">
+      <div id={{_id}} class="content ingredient-list">
         <a id={{_id}} class="header ingredient">{{name}}</a>
-        <div class="description">Lorem ipsum</div>
+         <div class="content">
+        <div class="description">Lorem ipsum</div>    
+      </div>
       </div>
     </div>
     {{/each}}
   </div>
+
+
 </template>

@@ -1,53 +1,94 @@
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-
-// Import needed templates
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import { Session } from 'meteor/session';
 import '../../ui/layouts/body/body.js';
-import '../../ui/pages/ingredients/ingredients.js';
-import '../../ui/pages/recipe-recipe-show/recipe-recipe-show.js';
 import '../../ui/pages/home/home.js';
+import '../../ui/components/header/header.js'
+import '../../ui/components/header/header.html'
 import '../../ui/pages/not-found/not-found.js';
 
-// Set up all routes in the app
 FlowRouter.route('/', {
   name: 'App.home',
   action() {
-  	this.render('App_body', { main: 'App_home' })
+  	BlazeLayout.render('App_body', 
+  		{ 
+  			left_top: 'recipe_search_list', 
+  			left_bottom: '', 
+  			right_top: 'ingredient_list', 
+  			header: 'header' 
+  		})
   },
 });
 
 FlowRouter.route('/recipes/:_id', {
   name: 'Recipes.show',
   action() {
-  	console.log(FlowRouter.getParam('_id'))
-    this.render('App_recipe_recipe_show');
-    // this.render('App_body', {main: 'App_recipe_recipe_show'});
+    BlazeLayout.render('App_body', 
+    	{
+  			left_top: 'recipe_search_list', 
+  			left_bottom: '', 
+  			right_top: 'recipe_show', 
+  			right_bottom: '',
+  			header: 'header'
+    	});
+  }
+});
+
+FlowRouter.route('/recipes/:_id/ingredients', {
+  name: 'Recipes.show',
+  action() {
+    BlazeLayout.render('App_body', 
+    	{
+  			left_top: 'ingredient_search', 
+  			left_bottom: '', 
+  			right_top: 'recipe_show', 
+  			right_bottom: '',
+  			header: 'header'
+    	});
   }
 });
 
 FlowRouter.route('/recipes', {
-  name: 'Recipes.list',
   action() {
-  	console.log('looking for recipes')
-    this.render('App_body', {main: 'recipe_list'});
-  }
-});
-
-FlowRouter.route('/ingredients/create', {
-  name: 'Ingredients.create',
-  action() {
-    this.render('App_body', {main: 'ingredient_form'});
-  }
+  	BlazeLayout.render('App_body', 
+  		{ 
+  			left_top: 'recipe_search_list', 
+  			left_bottom: '', 
+  			right_top: 'recipe_form', 
+  			header: 'header' 
+  		})
+  },
 });
 
 FlowRouter.route('/ingredients', {
   name: 'Ingredients.list',
   action() {
-    this.render('App_body', {main: 'App_ingredients'});
+  	BlazeLayout.render('App_body', 
+  		{ 
+  			left_top: 'ingredient_search_list', 
+  			left_bottom: '', 
+  			right_top: 'ingredient_form', 
+  			right_bottom: '', 
+  			header: 'header' 
+  		})
+  },
+});
+
+FlowRouter.route('/ingredients/:_id', {
+  name: 'Ingredients.show',
+  action() {
+    BlazeLayout.render('App_body', 
+  		{ 
+  			left_top: 'ingredient_search_list', 
+  			left_bottom: '', 
+  			right_top: 'ingredient_show', 
+  			header: 'header' 
+  		})
   }
 });
 
 FlowRouter.notFound = {
   action() {
-    this.render('App_body', { main: 'App_notFound' });
+    BlazeLayout.render('App_body', { main: 'App_notFound' });
   },
 };

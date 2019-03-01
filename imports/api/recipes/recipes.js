@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import  SimpleSchema  from 'simpl-schema';
+import { Meteor } from 'meteor/meteor';
 
 export const Recipes = new Mongo.Collection('recipes');
 
@@ -13,11 +14,16 @@ Recipes.deny({
 Recipes.schema = new SimpleSchema({
   _id: {
     type: String,
-    regEx: SimpleSchema.RegEx.Id,
   },
   name: {
     type: String,
-    max: 100,
+  },
+  ingredients: {
+    type: Array,
+  },
+  'ingredients.$': { 
+    type: Object,
+    blackbox: true
   },
   createdAt: {
     type: Date,
@@ -25,9 +31,10 @@ Recipes.schema = new SimpleSchema({
 });
 
 Recipes.attachSchema(Recipes.schema);
-
+// Recipes.schema = SimpleSchema.Recipes
 Recipes.publicFields = {
   name: 1,
+  ingredients: 1,
   createdAt: 1,
 };
 

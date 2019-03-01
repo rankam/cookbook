@@ -1,0 +1,64 @@
+<template name="recipe_show">
+{{#let r=recipe }}
+<form class="animated fadeIn faster ui form fluid" style="margin-top: 1.5em;">
+  <div class="field">
+    
+    <h3>Edit {{r.name}}</h3>
+    <div class="two fields">
+      <div class="field">
+        <label for="recipeName">Name</label>
+        <div class="ui action input">
+          <input name="recipeName" type="text" id='recipeName' value={{r.name}}>
+          <input type="hidden" id="recipeId" value={{r._id}} />
+          <button id="editRecipeNameBtn" class="ui button" type="submit">Update </button>
+        </div>
+      </div>
+    </div>
+    <div class="transition {{btnVisible}}">
+      <button class="add-ingredient ui button">Add Ingredients</button>
+    </div>
+    <div>
+      <table class="ui single line table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Fat</th>
+            <th>Carbs</th>
+            <th>Units</th>
+            <th>Unit of Measurement</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each ingredient in r.ingredients }}
+          <tr>
+            <td data-label="Name">{{ingredient.name}}</td>
+            <td data-label="Calories">{{ingredient.kcal}}</td>
+            <td data-label="Protein">{{ingredient.gramsProtein}}</td>
+            <td data-label="Fat">{{ingredient.gramsFat}}</td>
+            <td data-label="Carbs">{{ingredient.gramsCarbohydrates}}</td>
+            <td data-label="Units">{{ingredient.units}}</td>
+            <td data-label="UnitMeasurement">{{ingredient.unitType}}</td>
+            <td><i id={{ingredient._id}} style="cursor: pointer" class="trash icon"></i></td>
+          </tr>
+          {{/each}}
+          <tr>
+            <td data-label="Name">Total</td>
+            <td data-label="Calories">{{r.kcalSum}}</td>
+            <td data-label="Protein"></td>
+            <td data-label="Fat"></td>
+            <td data-label="Carbs"></td>
+            <td data-label="Units"></td>
+            <td data-label="UnitMeasurement"></td>
+            <td data-label="UnitMeasurement"></td>
+          </tr>          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>
+{{/let}}
+<br/>
+</template>

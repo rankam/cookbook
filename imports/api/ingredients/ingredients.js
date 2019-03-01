@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import SimpleSchema from 'simpl-schema';
+import { Meteor } from 'meteor/meteor';
 
 export const Ingredients = new Mongo.Collection('ingredients');
 
@@ -13,24 +14,23 @@ Ingredients.deny({
 Ingredients.schema = new SimpleSchema({
   _id: {
     type: String,
-    regEx: SimpleSchema.RegEx.Id,
   },
   name: {
     type: String,
     max: 100,
   },
-  kcal: {
+  kcal  : {
     type: Number,
   },
-  protein: {
+  gramsProtein: {
     type: Number,
   },
-  carbohydrates: {
+  gramsCarbohydrates: {
     type: Number,
   },
-  fat: {
+  gramsFat: {
     type: Number,
-  },  
+  }, 
   units: {
     type: Number,
   },      
@@ -48,9 +48,9 @@ Ingredients.attachSchema(Ingredients.schema);
 Ingredients.publicFields = {
   name: 1,
   kcal: 1, 
-  protein: 1, 
-  carbohydrates: 1, 
-  fat: 1, 
+  gramsProtein: 1, 
+  gramsCarbohydrates: 1, 
+  gramsfat: 1,
   units: 1, 
   unitType: 1,  
   createdAt: 1,

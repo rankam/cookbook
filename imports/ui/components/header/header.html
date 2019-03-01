@@ -1,12 +1,12 @@
 <template name='header'>
 <div class="ui secondary pointing menu">
-  <a id=1 href="/" class="item active">
+  <a id="header-home" href="/" class="item {{ selected className='home'}}">
     Home
   </a>
-  <a id=2 href="/recipes" class="item ">
+  <a id="header-recipes" href="/recipes" class="item {{ selected className='recipes'}}">
     Recipes
-  </a>
-  <a id=3 href="/ingredients" class="item ingredient">
+  </a> 
+  <a id="header-ingredients" href="/ingredients" class="{{ selected className='ingredients' }} item ">
     Ingredients
   </a>
   <div class="right menu">
