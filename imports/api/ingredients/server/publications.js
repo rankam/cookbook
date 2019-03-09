@@ -26,5 +26,10 @@ Meteor.publish('ingredientSearchResultsNoInitial', function (searchTerm) {
 
 });
 
+Meteor.publish('fetchIngredient', function(_id) {
+
+	return Ingredients.find({_id});
+})
+
 
 

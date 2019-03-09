@@ -1,4 +1,3 @@
-// Methods related to recipes
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
@@ -49,8 +48,9 @@ export const addIngredient = new ValidatedMethod({
   name: 'recipes.addIngredient',
   validate: null,
   run({ _id, ingredientId }) {
-    ingredient = Ingredients.findOne({_id: ingredientId})
-    Recipes.update(_id, {$addToSet: {ingredients: ingredient  }});
+    const ingredient = Ingredients.find({_id: ingredientId});
+    const i = ingredient.fetch()
+    Recipes.update(_id, {$addToSet: {ingredients: i[0]  }});
   }
 })
 

@@ -1,21 +1,27 @@
-import './ingredient_search_list.html';
+import './recipe_add_ingredient.html';
 import { ReactiveDict } from 'meteor/reactive-dict'
 import { Ingredients } from '/imports/api/ingredients/ingredients.js';
+import { Recipes } from '/imports/api/recipes/recipes.js';
 import { Meteor } from 'meteor/meteor';
 import { deleteIngredient } from '/imports/api/ingredients/methods.js';
-import { addIngredient } from '/imports/api/recipes/methods.js';
+import { addIngredient, removeIngredientFromRecipe } from '/imports/api/recipes/methods.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
-Template.ingredient_search_list.onCreated(function () {
+Template.recipe_add_ingredient.onCreated(function () {
   this.state = new ReactiveDict();
 
   this.state.set('searchTerm','');
   this.autorun(() => {
-  	this.subscribe('ingredientSearchResults', this.state.get('searchTerm'))
+    FlowRouter.watchPathChange();
+    let currentContext = FlowRouter.current();
+    // this.state.set("recipeId", currentContext.params["_id"]);    
+    this.subscribe('ingredientSearchResults', this.state.get('searchTerm'))
+  	this.subscribe('recipeShow', currentContext.params["_id"])   
+
   });	
 });
 
-Template.ingredient_search_list.helpers({
+Template.recipe_add_ingredient.helpers({
 
 	ingredients() {
 		const template = Template.instance();
@@ -24,17 +30,22 @@ Template.ingredient_search_list.helpers({
 		} else {
 			return Ingredients.find({}, { sort: [["score", "desc"]] })			
 		}
-	}
+	},
+  recipe() {
+    const _id = FlowRouter.getParam('_id');
+    return Recipes.findOne({_id});
+  }
 });
 
-Template.ingredient_search_list.events({
+Template.recipe_add_ingredient.events({
 	'keyup #ingredientSearch': function(event) {
 		const template = Template.instance();
 		template.state.set('searchTerm', event.target.value)		
 	},
-  'click .deleteIngredient': function remove(event) {
+  'click .removeIngredient': function remove(event) {
     const ingredientId = event.currentTarget.id;
-    deleteIngredient.call(ingredientId)
+    const recipeId = FlowRouter.getParam('_id');
+    removeIngredientFromRecipe.call({recipeId, ingredientId})
   },
   'click .ingredient-list': function (event) {
     const ingredientId = event.currentTarget.id;

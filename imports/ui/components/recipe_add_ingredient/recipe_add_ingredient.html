@@ -1,0 +1,66 @@
+<template name="recipe_add_ingredient">
+<div class="animated fadeIn faster">
+	<div class="row">
+		<div class="ui grid">
+			<div class="twelve wide column">
+				<div style="color: cornflowerblue; font-size: 12pt; font-weight: lighter; font-family: sans-serif">Library</div>
+				<div style="color: rgb(54, 54, 58); font-size: 20pt; font-weight: bold; margin-top: 1%">Ingredients</div>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<div class="ui grid">
+		<div class="fourteen wide column">
+			<div class="ui fluid category search">
+				<div class="ui icon input fluid">
+					<input id="ingredientSearch" class="prompt fluid" type="text" placeholder="Search ingredients...">
+					<i class="search icon"></i>
+				</div>
+				<div class="results"></div>
+			</div>
+			<br />
+			<div class="ui middle aligned selection divided list ">
+				{{#each ingredient in ingredients}}
+				<div class="item">
+					<div class="right floated content">
+						<div id={{ingredient._id}} class="ui basic mini button addIngredient" style="color: seagreen!important; box-shadow: 0px 0px 0px 1px seagreen inset !important; opacity: .6">Add</div>
+					</div>
+					<div id={{ingredient._id}} class="content ingredient-list">
+						<a id={{ingredient._id}} class="header ingredient">{{ingredient.name}}</a>
+						<div class="content">
+							<div class="description">Lorem ipsum</div>
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+		<div class="1 wide column">
+			
+		</div>
+		<div class="ui sidebar vertical visible menu floated right" style="border: inherit; width: 15em!important">
+			<div class="row" style="min-height: 5%"></div>
+			<div class="row" style="min-height: 70%">
+				<div class="content">
+					<div class="item">
+						<h4><a href="/recipes/{{recipe._id}}">{{ recipe.name }}</a></h4>
+					</div>
+				</div>
+				<div class="ui list">
+					{{#each recipe.ingredients}}
+					<div class="content">
+						<span class="item">{{name}}
+							<i id={{_id}} style="cursor: pointer!important; opacity: .6" class="removeIngredient red trash icon right floated"></i>
+						</span>
+					</div>
+					{{/each}}
+				</div>
+			</div>
+			<div class="row" style="min-height: 25%"></div>
+			
+		</div>
+	</div>
+</div>
+</template>

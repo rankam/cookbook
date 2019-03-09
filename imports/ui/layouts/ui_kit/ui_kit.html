@@ -1,0 +1,26 @@
+<template name="ui_kit">
+<div class="ui wide sidebar vertical visible menu" style="box-shadow: inherit; background-color: rgb(246,246,249); border: inherit; width: 18em!important">	
+	{{> Template.dynamic template=side_nav}}
+</div>
+<div class="pusher">
+	<div class="row">
+		<div class="ui grid">
+			<div class="two wide column"></div>
+			<div class="fourteen wide column">
+			{{> Template.dynamic template=header}}</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="ui grid">
+			<div class="three wide column"></div>
+			<div class="eleven wide column">
+				<div style="margin-top: 3%">
+				</div>				
+				{{> Template.dynamic template=main}}
+			</div>
+			<div class="two wide column" style="z-index: -1000"></div>
+		</div>
+	</div>
+
+</div>
+</template>

@@ -1,29 +1,60 @@
 <template name="recipe_search_list">
-	<div class="animated fadeIn faster">
-	<h2>Recipes</h2>
-	<hr />
+<div class="animated fadeIn faster">
+	<div class="row">
+		<div class="ui grid">
+			<div class="twelve wide column">
+				<div style="color: cornflowerblue; font-size: 12pt; font-weight: lighter; font-family: sans-serif">Library</div>
+				<!-- <div style="color: rgb(255, 0, 78); font-size: 12pt; font-weight: lighter; font-family: sans-serif">Library</div> -->
+				<div style="color: rgb(54, 54, 58); font-size: 20pt; font-weight: bold; margin-top: 1%">Recipes</div>
+			</div>
+			<div class="four wide column">
+				<div class="ui fluid category search">
+					<div class="ui left icon input transparent fluid">
+						<i class="search icon"></i>
+						<input id="recipe-search" class="prompt fluid" type="text" placeholder="Search recipes...">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<br/>
-<div class="ui fluid category search">
-  <div class="ui icon input fluid">
-    <input id="recipe-search" class="prompt fluid" type="text" placeholder="Search recipes...">
-    <i class="search icon"></i>
-  </div>
-  <div class="results"></div>
-</div>	
-  <div class="ui middle aligned selection divided list">
-    {{#each recipes}}
-    <div class="item">
-      <div class="right floated content">
-        <div id={{_id}} class="ui button deleteRecipe">delete</div>
-      </div>
-      <div id={{_id}} class="content recipe-list">
-        {{name}}
-        <div class="description">
-          Lorem ipsum
-        </div>
-      </div>
-    </div>   
-    {{/each}}
-  </div>  
+	<br/>
+	<br/>
+	<div class="ui cards">
+		{{#each recipes}}
+		<div id={{_id}} class="raised card recipe-list">
+			<a class="image" href="/recipes/{{_id}}">
+				<!-- <img src="https://www.bbcgoodfood.com/sites/default/files/categories/categories-image/2013/05/frying-pan-pizza-easy-recipe-collection.jpg"> -->
+				<img src="https://semantic-ui.com/images/wireframe/white-image.png">
+			</a>
+			<div class="content">
+				<div id={{_id}} class="header">{{ name }}</div>
+				<div class="meta">
+					<span class="category">Lorem Ipsum</span>
+				</div>
+				<div class="description">
+					<p></p>
+				</div>
+			</div>
+			<div class="extra content">
+				<div class="right floated author">
+					Remy
+				</div>
+			</div>
+		</div>
+		{{/each}}
+	</div>
 </div>
 </template>
+<!--     <div class="item">
+				<div class="right floated content">
+								<div id={{_id}} class="ui button deleteRecipe">delete</div>
+				</div>
+				<div id={{_id}} class="content recipe-list">
+								{{name}}
+								<div class="description">
+												Lorem ipsum
+								</div>
+				</div>
+</div>  -->

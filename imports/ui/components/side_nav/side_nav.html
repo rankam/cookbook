@@ -1,0 +1,37 @@
+<template name="side_nav">
+<div class="row" style="min-height: 10%"></div>
+<div class="row" style="min-height: 20%">
+	<div class="ui divided items" style="margin-left: 20%">
+		<div class="middle aligned content">
+			
+			<span class="item" style="color: rgb(113,123,133);font-weight:600; font-size: 10pt"><i class="book icon" style="float:left; margin: 0 0 0 -2em; color:cornflowerblue"></i>LIBRARY</span>
+			<!-- <span class="item" style="color: rgb(113,123,133);font-weight:600; font-size: 10pt"><i class="book icon" style="float:left; margin: 0 0 0 -2em; color:rgb(255, 0, 78)"></i>LIBRARY</span> -->
+
+		</div>		
+		<div class="middle aligned content">
+			<a id="header-home" href="/" class="item {{ selected className='home'}}" style="color: {{ selectedColor className='home'}}">
+				Home
+			</a>
+		</div>
+		<div class="middle aligned content">
+			<a  id="header-recipes" href="/recipes" class="item {{ selected className='recipes'}}" style="color: {{ selectedColor className='recipes'}}">
+				Recipes
+			</a>
+		</div>
+		<div class="middle aligned content">
+			<a  id="header-ingredients" href="/ingredients" class="{{ selected className='ingredients' }} item " style="color: {{ selectedColor className='ingredients' }}">
+				Ingredients
+			</a>
+		</div>
+	</div>
+</div>
+<div class="row" style="min-height: 5%"></div>
+<div class="row" style="min-height: 20%">
+</div>
+<div class="row" style="min-height: 35%"></div>
+<div class="row" style="min-height: 10%">
+	<a  class="ui item">
+		<!-- Logout -->
+	</a>
+</div>
+</template>

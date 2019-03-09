@@ -30,14 +30,14 @@ Ingredients.schema = new SimpleSchema({
   },
   gramsFat: {
     type: Number,
-  }, 
+  },
   units: {
     type: Number,
-  },      
+  },
   unitType: {
     type: String,
     max: 100,
-  },     
+  },
   createdAt: {
     type: Date,
   },
@@ -47,12 +47,11 @@ Ingredients.attachSchema(Ingredients.schema);
 
 Ingredients.publicFields = {
   name: 1,
-  kcal: 1, 
-  gramsProtein: 1, 
-  gramsCarbohydrates: 1, 
+  kcal: 1,
+  gramsProtein: 1,
+  gramsCarbohydrates: 1,
   gramsfat: 1,
-  units: 1, 
-  unitType: 1,  
+  units: 1,
+  unitType: 1,
   createdAt: 1,
 };
-

@@ -1,59 +1,72 @@
 <template name="ingredient_show">
-	{{#let _id=ingredient._id name=ingredient.name kcal=ingredient.kcal protein=ingredient.gramsProtein fat=ingredient.gramsFat carbs=ingredient.gramsCarbohydrates units=ingredient.units unitType=ingredient.unitType}}
+{{#let _ingredient=ingredient}}
 <form class="animated fadeIn faster ui form" style="margin-top: 1.5em;">
-	<div class="field">
-	<h3>Edit {{name}}</h3>
+<!-- 	<div class="field">
+		<h3>Edit {{_ingredient.name}}</h3>
 		<div class="two fields">
-		  <div class="field">
-		  	<label for="ingredientName">Name</label>
-		    <input name="ingredientName" type="text" id='ingredientName' value={{name}}>
-		  </div>	  	  
+			<div class="field">
+				<label for="ingredientName">Name</label>
+				<input name="ingredientName" type="text" id='ingredientName' value={{_ingredient.name}}>
+			</div>
+		</div>
+	</div> -->
+  <div class="row">
+    <div class="ui grid">
+      <div class="twelve wide column">
+        <div style="color: cornflowerblue; font-size: 12pt; font-weight: lighter; font-family: sans-serif">Edit</div>
+        <!-- <div style="color: rgb(255, 0, 78); font-size: 12pt; font-weight: lighter; font-family: sans-serif">Edit</div> -->
+        <div style="color: rgb(54, 54, 58); font-size: 20pt; font-weight: bold; margin-top: 1%">{{_ingredient.name}}</div>
+      </div>
+      <div class="four wide column">
+      </div>
+    </div>
+  </div>  
+  <br/>	
+	<div class="field">
+		<div class="two fields">
+			<div class="field">
+				<label for="kcal">Calories</label>
+				<input name='kcal' type="number" id='kcal' value={{_ingredient.kcal}}>
+			</div>
+			<div class="field">
+				<label for="gramsProtein">Protein</label>
+				<input name='protein' type="number" id='gramsProtein' value={{_ingredient.gramsProtein}}>
+			</div>
+		</div>
+		<div class="two fields">
+			<div class="field">
+				<label for="gramsFat">Fat</label>
+				<input name='fat' type="number" id='gramsFat' value={{_ingredient.gramsFat}}>
+			</div>
+			<div class="field">
+				<label for="gramsCarbohydrates">Carbohydrates</label>
+				<input name='carbohydrates' type="number" id='gramsCarbohydrates' value={{_ingredient.gramsCarbohydrates}}>
+			</div>
 		</div>
 	</div>
 	<div class="field">
-		<div class="two fields">	
-			 <div class="field">
-		  	<label for="kcal">Calories</label>
-		    <input name='kcal' type="number" id='kcal' value={{kcal}}>
-		  </div>	
-		  <div class="field">
-		  	<label for="gramsProtein">Protein</label>
-		    <input name='protein' type="number" id='gramsProtein' value={{protein}}>
-		  </div>				  
-		</div>
 		<div class="two fields">
-		  <div class="field">
-		  	<label for="gramsFat">Fat</label>
-		  	<input name='fat' type="number" id='gramsFat' value={{fat}}>
-		  </div>		  
-	  	<div class="field">
-	  		<label for="gramsCarbohydrates">Carbohydrates</label>
-				<input name='carbohydrates' type="number" id='gramsCarbohydrates' value={{carbs}}>
-	  	</div>	
+			<div class="field">
+				<label for="units">Units</label>
+				<input name='units' type="number" id='units' value={{_ingredient.units}}>
+			</div>
+			<div class="field">
+				<label for="unitType">Unit Type</label>
+				<div class="ui search fluid selection dropdown">
+					<input id="unitTypeInput" type="hidden" name="unitType" value="">
+					<i class="dropdown icon"></i>
+					<div class="default text">{{_ingredient.unitType}}</div>
+					<div class="menu">
+						<div class="item">Ounces</div>
+						<div class="item">Grams</div>
+						<div class="item">Milliliter</div>
+					</div>
+				</div>			
+			</div>			
 		</div>
 	</div>
-	<div class="field">
-		<div class="two fields">
-		  <div class="field">
-		  	<label for="units">Units</label>
-				<input name='units' type="number" id='units' value={{units}}>
-		  </div>				
-		  <div class="field">
-		  	<label for="unitType">Unit Type</label>
-				<div class="ui selection dropdown">
-			  	<input type="hidden" id="unitType" name="unitType" value={{unitType}}>
-			  	<i class="dropdown icon"></i>
-			  	<div class="menu">
-			      <div class="item">Ounces</div>
-			      <div class="item">Grams</div>
-			      <div class="item">Milliliter</div>
-			  	</div>
-				</div> 
-			</div>	    	    
-	  </div>
-	</div>
-	<input type="hidden" id="ingredientId" value={{_id}} />
-  <button id='submitFormBtn' class="ui button" type="submit">Submit</button>
+	<input type="hidden" id="ingredientId" value={{_ingredient._id}} />
+	<button id='submitFormBtn' class="ui button" type="submit">Submit</button>
 </form>
 {{/let}}
 </template>

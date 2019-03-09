@@ -17,11 +17,18 @@ Meteor.publish('recipeSearchResults', function (searchTerm) {
 
 });
 
+Meteor.publish('recipeIngredients', function(ingredientIds) {
+	console.log('publishing recipe ingredients ', ingredientIds)
+	return Ingredients.find({"_id": {"$in": ingredients}})
+})
+
 
 Meteor.publish('recipeShow', function (recipeId) {
 	console.log(`fetching recipe ${recipeId}...`)
 	return Recipes.find({_id: recipeId});
 });
 
-
-
+Meteor.publish('recipeShow', function (recipeId) {
+	console.log(`fetching recipe ${recipeId}...`)
+	return Recipes.find({_id: recipeId});
+});

@@ -1,2 +1,5 @@
 node_modules/
 .meteor/
+py_env/
+mongo-connector.log
+oplog.timestamp

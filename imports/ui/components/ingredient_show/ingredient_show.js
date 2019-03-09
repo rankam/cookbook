@@ -3,8 +3,19 @@ import { Meteor } from 'meteor/meteor';
 import './ingredient_show.html';
 import { deleteIngredient, upsertIngredient } from '/imports/api/ingredients/methods.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { ReactiveDict } from "meteor/reactive-dict";
 
 Template.ingredient_show.onCreated(function () {
+  this.state = new ReactiveDict();
+  Tracker.autorun(() => {
+    FlowRouter.watchPathChange();
+    let currentContext = FlowRouter.current();
+    this.state.set("ingredientId", currentContext.params["_id"]);
+    this.subscribe(
+      "fetchIngredient",
+      currentContext.params["_id"]
+    );    
+  });	
 });
 
 Template.ingredient_show.rendered = function() {
@@ -13,9 +24,14 @@ Template.ingredient_show.rendered = function() {
 
 Template.ingredient_show.helpers({
   ingredient() {
+    const template = Template.instance();
     const ingredientId = FlowRouter.getParam('_id');
-    var i = Ingredients.find({_id:ingredientId}).fetch()
-    return i[0]
+    template.subscribe(
+      "fetchIngredient",
+      ingredientId
+    );     
+    console.log(Ingredients.findOne({_id:ingredientId}));
+    return Ingredients.findOne({_id:ingredientId})
   }
 });
 
@@ -30,6 +46,7 @@ Template.ingredient_show.events({
     const gramsCarbohydrates = event.target.form.gramsCarbohydrates.value;
     const units = event.target.form.units.value;
     const unitType = event.target.form.unitType.value;
+    const template = Template.instance();
     const ingredient = upsertIngredient.call({ _id, name, kcal, gramsFat, gramsProtein, gramsCarbohydrates, units, unitType})
     console.log('Upserted ', ingredient)
 	}

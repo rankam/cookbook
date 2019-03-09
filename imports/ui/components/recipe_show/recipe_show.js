@@ -56,7 +56,7 @@ Template.recipe_show.events({
     event.preventDefault();
     const recipeId = FlowRouter.getParam("_id");
 
-    FlowRouter.go(`/recipes/${recipeId}/ingredients`);
+    FlowRouter.go(`/recipes/${recipeId}/add-ingredient`);
   },
   "click .trash": event => {
     const ingredientId = event.target.id;
